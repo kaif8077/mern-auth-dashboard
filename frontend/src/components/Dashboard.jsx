@@ -50,12 +50,12 @@ const Dashboard = ({ token, setToken }) => {
       <div className="p-8 space-y-6">
         <div className="bg-white p-6 rounded shadow">
           <h2 className="text-2xl font-bold">
-            Welcome, {username} 👋
+            Welcome, {username} 
           </h2>
         </div>
 
         <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
-          <p className="font-semibold">😂 Programming Joke</p>
+          <p className="font-semibold">Programming Joke</p>
           <p className="mt-2 text-gray-700">{joke || "Loading joke..."}</p>
         </div>
       </div>
