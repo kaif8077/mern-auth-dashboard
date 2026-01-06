@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import api from "../utils/axios";
 import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = ({ token, setToken }) => {
@@ -14,8 +16,8 @@ const Dashboard = ({ token, setToken }) => {
     }
 
     // user data
-    axios
-      .get("http://localhost:5000/api/auth/me", {
+    api
+      .get("/api/auth/me", {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => setUsername(res.data.username))

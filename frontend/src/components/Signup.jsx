@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+
+import api from "../utils/axios";
 import { useNavigate, Link } from "react-router-dom";
 
 const Signup = ({ setToken }) => {
@@ -26,8 +27,8 @@ const Signup = ({ setToken }) => {
     }
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/signup",
+      const res = await api.post(
+        "/api/auth/signup",
         { username, email, password }
       );
 
