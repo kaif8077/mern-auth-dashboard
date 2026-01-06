@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",          
-      "https://your-vercel-app.vercel.app" 
+      "https://mern-auth-dashboard-two.vercel.app/" 
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true
