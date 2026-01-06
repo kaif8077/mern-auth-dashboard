@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import auth from "../middleware/auth.js";
+
 const router = express.Router();
 
 // SIGNUP
@@ -26,9 +27,11 @@ router.post("/signup", async (req, res) => {
     password: hashedPassword
   });
 
-  const token = jwt.sign({ id: user._id }, "SECRET_KEY", {
-    expiresIn: "1d"
-  });
+  const token = jwt.sign(
+    { id: user._id },
+    process.env.JWT_SECRET,   // 🔥 ENV USED
+    { expiresIn: "1d" }
+  );
 
   res.json({ token });
 });
@@ -47,16 +50,19 @@ router.post("/login", async (req, res) => {
     return res.status(400).json({ message: "Invalid credentials" });
   }
 
-  const token = jwt.sign({ id: user._id }, "SECRET_KEY", {
-    expiresIn: "1d"
-  });
+  const token = jwt.sign(
+    { id: user._id },
+    process.env.JWT_SECRET,   // 🔥 ENV USED
+    { expiresIn: "1d" }
+  );
 
   res.json({ token });
 });
 
-
+// GET LOGGED IN USER
 router.get("/me", auth, async (req, res) => {
   const user = await User.findById(req.userId).select("-password");
   res.json(user);
 });
+
 export default router;
